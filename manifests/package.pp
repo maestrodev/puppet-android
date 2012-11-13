@@ -20,7 +20,7 @@ define android::package($type) {
   
 
   $proxy_host = $android::proxy_host ? { undef => '', default => "--proxy-host ${android::proxy_host}" }
-  $proxy_port = $android::proxy_prot ? { undef => '', default => "--proxy-port ${android::proxy_port}" }
+  $proxy_port = $android::proxy_port ? { undef => '', default => "--proxy-port ${android::proxy_port}" }
 
   case $type {
     'platform-tools': {
