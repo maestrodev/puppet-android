@@ -50,6 +50,7 @@ describe "android" do
     context 'with installdir' do
       version = '20.0.3'
       let(:params) { { :installdir => '/myinstalldir' } }
+      it { should contain_file('/myinstalldir') }
       it { should contain_exec('unpack-androidsdk').with_cwd('/myinstalldir') }
     end
 
