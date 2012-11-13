@@ -35,14 +35,14 @@ class android::sdk {
 
   file { $android::paths::installdir:
     ensure => directory,
-    owner  => $android::user_real,
-    group  => $android::group_real,
+    owner  => $android::user,
+    group  => $android::group,
   } ->
   exec { 'unpack-androidsdk':
     command => $unpack_command,
     creates => $android::paths::sdk_home,
     cwd     => $android::paths::installdir,
-    user    => $android::user_real,
+    user    => $android::user,
     require => File[$android::paths::installdir],
   }
 
