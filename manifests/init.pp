@@ -8,6 +8,8 @@
 # [*user*] used to set the file ownership of the installed SDK
 # [*group*] used to set the file ownership of the installed SDK
 # [*installdir*] the install directory.
+# [*proxy_host*] the proxy server host name
+# [*proxy_port*] the proxy server port
 #
 # === Authors
 #
@@ -21,7 +23,9 @@ class android(
   $version    = $android::params::version,
   $user       = $android::params::user,
   $group      = $android::params::group,
-  $installdir = $android::params::installdir) inherits android::params {
+  $installdir = $android::params::installdir,
+  $proxy_host = $android::params::proxy_host,
+  $proxy_port = $android::params::proxy_port) inherits android::params {
 
   include android::paths
   include android::sdk

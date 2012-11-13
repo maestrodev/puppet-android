@@ -13,7 +13,9 @@
 class android::params {
 
   $version = '20.0.3'
-
+  $proxy_host = undef
+  $proxy_port = undef
+  
   case $::kernel {
     'Linux': {
       $user = 'root'
