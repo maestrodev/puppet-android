@@ -12,7 +12,7 @@
 # Copyright 2012 MaestroDev, unless otherwise noted.
 #
 class android::sdk {
-
+  include android::paths
   include wget
 
   wget::fetch { 'download-androidsdk':

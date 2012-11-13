@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "android" do
-
+  default_version = '20.0.3'
   let(:facts) { {
     :operatingsystem => 'CentOS',
     :kernel => 'Linux',
@@ -9,14 +9,13 @@ describe "android" do
   } }
 
   context 'default' do
-    version = '20.0.3'
     it { should include_class('android::paths') }
     it { should include_class('android::sdk') }
     it { should include_class('android::platform_tools') }
 
     it { should contain_Wget__Fetch("download-androidsdk").with({ 
-      :source => "http://dl.google.com/android/android-sdk_r#{version}-linux.tgz",
-      :destination => "/usr/local/src/android-sdk_r#{version}-linux.tgz"}) 
+      :source => "http://dl.google.com/android/android-sdk_r#{default_version}-linux.tgz",
+      :destination => "/usr/local/src/android-sdk_r#{default_version}-linux.tgz"}) 
     }
     it { should contain_exec('update-android-package-platform-tools')
         .with_command('/usr/local/android/android-sdk-linux/tools/android update sdk -u -t platform-tools  ') 
@@ -48,7 +47,6 @@ describe "android" do
     end
 
     context 'with installdir' do
-      version = '20.0.3'
       let(:params) { { :installdir => '/myinstalldir' } }
       it { should contain_file('/myinstalldir') }
       it { should contain_exec('unpack-androidsdk').with_cwd('/myinstalldir') }
@@ -61,5 +59,22 @@ describe "android" do
       } }
       it { should contain_exec('unpack-androidsdk').with_user('myuser') }
       it { should contain_file('/usr/local/android').with( { :owner => 'myuser', :group => 'mygroup' } ) }
+    end
+    
+    context 'Mac OS X' do
+     let(:facts) { {
+          :kernel => 'Darwin',
+      } }
+
+      it { should contain_Wget__Fetch("download-androidsdk").with({ 
+        :source => "http://dl.google.com/android/android-sdk_r#{default_version}-macosx.zip",
+        :destination => "/Developer/android/android-sdk_r#{default_version}-macosx.zip"}) 
+      }
+      it { should contain_exec('update-android-package-platform-tools')
+          .with_command('/Developer/android/android-sdk-macosx/tools/android update sdk -u -t platform-tools  ') 
+      }
+
+      it { should contain_file('/Developer/android').with( { :owner => 'root', :group => 'admin' }) }
+      it { should contain_exec('unpack-androidsdk').with( { :cwd => '/Developer/android',:user => 'root' } ) }
     end
 end

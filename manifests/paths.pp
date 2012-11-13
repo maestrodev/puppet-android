@@ -12,6 +12,7 @@
 # Copyright 2012 MaestroDev, unless otherwise noted.
 #
 class android::paths{
+
   $installdir = $android::installdir
   $version = $android::version
 
@@ -28,7 +29,7 @@ class android::paths{
     }
     'Darwin': {
       $source = "http://dl.google.com/android/android-sdk_r${version}-macosx.zip"
-      $sdk_home = "${installdir}/android-sdk-mac_x86"
+      $sdk_home = "${installdir}/android-sdk-macosx"
       $archive = "${installdir}/android-sdk_r${version}-macosx.zip"
     }
     default: {
