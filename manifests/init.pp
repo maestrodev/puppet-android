@@ -8,8 +8,8 @@
 # [*user*] used to set the file ownership of the installed SDK
 # [*group*] used to set the file ownership of the installed SDK
 # [*installdir*] the install directory.
-# [*proxy_host*] the proxy server host name
-# [*proxy_port*] the proxy server port
+# [*proxy_host*] the proxy server host name (used by the android tool)
+# [*proxy_port*] the proxy server port (used by the android tool)
 #
 # === Authors
 #
