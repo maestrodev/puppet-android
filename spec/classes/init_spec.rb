@@ -58,7 +58,7 @@ describe "android" do
         :user => 'myuser',
         :group => 'mygroup'
       } }
-
+      it { should contain_exec('unpack-androidsdk').with_user('myuser') }
       it { should contain_file('/usr/local/android').with( { :owner => 'myuser', :group => 'mygroup' } ) }
     end
 end
