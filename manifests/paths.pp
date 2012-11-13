@@ -22,25 +22,17 @@ class android::paths{
           ensure => directory,
         }
       }
-      $installdir_real = $installdir ? { 'UNSET' => '/usr/local/android', default => $installdir }
-      $sdk_home = "${installdir_real}/android-sdk-linux"
+      $sdk_home = "${installdir}/android-sdk-linux"
       $source = "http://dl.google.com/android/android-sdk_r${version}-linux.tgz"
       $archive = "/usr/local/src/android-sdk_r${version}-linux.tgz"
     }
     'Darwin': {
       $source = "http://dl.google.com/android/android-sdk_r${version}-macosx.zip"
-      $installdir_real = $installdir ? { 'UNSET' => '/Developer/android', default => $installdir }
-      $sdk_home = "${installdir_real}/android-sdk-mac_x86"
-      $archive = "${installdir_real}/android-sdk_r${version}-macosx.zip"
+      $sdk_home = "${installdir}/android-sdk-mac_x86"
+      $archive = "${installdir}/android-sdk_r${version}-macosx.zip"
     }
     default: {
       fail("Unsupported Kernel: ${::kernel} operatingsystem: ${::operatingsystem}")
     }
   }
-  file { $installdir_real:
-    ensure => directory,
-    owner  => $android::user_real,
-    group  => $android::group_real,
-  }
-
 }

@@ -17,10 +17,11 @@
 #
 # Copyright 2012 MaestroDev, unless otherwise noted.
 #
-class android($version = '20.0.3', $user = 'UNSET', $group = 'UNSET', $installdir = 'UNSET') {
-
-  $user_real = $user ? { 'UNSET' => 'root', default => $user }
-  $group_real = $group ? { 'UNSET' => 'root', default => $group }
+class android(
+  $version    = $android::params::version,
+  $user       = $android::params::user,
+  $group      = $android::params::group,
+  $installdir = $android::params::installdir) inherits android::params {
 
   include android::paths
   include android::sdk

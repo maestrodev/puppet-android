@@ -9,6 +9,12 @@ Supported platforms:
 * Linux (RedHat, Debian families)
 * Mac OS X
 
+Examples
+--------
+
+To install the Android SDK in the default location (/usr/local/android on Linux
+and /Developer/android on Mac OS X).
+
 License
 -------
 ```

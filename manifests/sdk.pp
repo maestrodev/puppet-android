@@ -33,12 +33,17 @@ class android::sdk {
     }
   }
 
+  file { $android::paths::installdir:
+    ensure => directory,
+    owner  => $android::user_real,
+    group  => $android::group_real,
+  } ->
   exec { 'unpack-androidsdk':
     command => $unpack_command,
     creates => $android::paths::sdk_home,
-    cwd     => $android::paths::installdir_real,
+    cwd     => $android::paths::installdir,
     user    => $android::user_real,
-    require => File[$android::paths::installdir_real],
+    require => File[$android::paths::installdir],
   }
 
   # For 64bit systems, we need to install some 32bit libraries for the SDK
