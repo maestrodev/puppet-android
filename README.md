@@ -13,7 +13,33 @@ Examples
 --------
 
 To install the Android SDK in the default location (/usr/local/android on Linux
-and /Developer/android on Mac OS X).
+and /Developer/android on Mac OS X) you simply include the android class like so.
+
+```
+  include android
+```
+
+You can also change the default parameters like so:
+
+```
+  class { 'android':
+    user       => 'someuser',
+    group      => 'somegroup',
+    installdir => '/path/to/your/dir',
+  }
+```
+
+To install an android platform, do it like so:
+
+```
+  android::platform { 'android-16': }
+```
+
+You can also install add-ons:
+
+```
+  android::addon { 'some-add-on': }
+```
 
 License
 -------
