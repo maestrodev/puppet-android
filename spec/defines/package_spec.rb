@@ -39,9 +39,9 @@ describe 'android::package' do
     } }
     let(:title) { 'android-15' }
     let(:params) { { :type => 'platform' } }
-    creates = '/Developer/android/android-sdk-macosx/platforms/android-15'
+    creates = '/usr/local/android/android-sdk-macosx/platforms/android-15'
     it { should contain_exec('update-android-package-android-15').with({
-      :command => '/Developer/android/android-sdk-macosx/tools/android update sdk -u -t android-15  ',
+      :command => '/usr/local/android/android-sdk-macosx/tools/android update sdk -u -t android-15  ',
       :creates => creates,
     }) }
   end

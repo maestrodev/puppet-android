@@ -14,26 +14,21 @@
 class android::paths{
 
   $installdir = $android::installdir
-  $version = $android::version
+  $version    = $android::version
 
   case $::kernel {
     'Linux': {
-      if ! defined(File['/usr/local/src']) {
-        file { '/usr/local/src':
-          ensure => directory,
-        }
-      }
-      $sdk_home = "${installdir}/android-sdk-linux"
-      $source = "http://dl.google.com/android/android-sdk_r${version}-linux.tgz"
-      $archive = "/usr/local/src/android-sdk_r${version}-linux.tgz"
+      $sdk_home     = "${installdir}/android-sdk-linux"
+      $distrib_file = "android-sdk_r${version}-linux.tgz"
     }
     'Darwin': {
-      $source = "http://dl.google.com/android/android-sdk_r${version}-macosx.zip"
-      $sdk_home = "${installdir}/android-sdk-macosx"
-      $archive = "${installdir}/android-sdk_r${version}-macosx.zip"
+      $sdk_home     = "${installdir}/android-sdk-macosx"
+      $distrib_file = "android-sdk_r${version}-macosx.zip"
     }
     default: {
       fail("Unsupported Kernel: ${::kernel} operatingsystem: ${::operatingsystem}")
     }
   }
+  $source  = "http://dl.google.com/android/${distrib_file}"
+  $archive = "${installdir}/${distrib_file}"
 }

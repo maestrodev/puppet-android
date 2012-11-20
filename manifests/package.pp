@@ -17,7 +17,6 @@
 #
 define android::package($type) {
   include android
-  
 
   $proxy_host = $android::proxy_host ? { undef => '', default => "--proxy-host ${android::proxy_host}" }
   $proxy_port = $android::proxy_port ? { undef => '', default => "--proxy-port ${android::proxy_port}" }
@@ -42,6 +41,7 @@ define android::package($type) {
   exec { "update-android-package-${title}":
     command => "${android::paths::sdk_home}/tools/android update sdk -u -t ${title} ${proxy_host} ${proxy_port}",
     creates => $creates,
+    timeout => 0,
     require => Class['Android::Sdk']
   }
 

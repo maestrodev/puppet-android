@@ -15,18 +15,12 @@ class android::sdk {
   include android::paths
   include wget
 
-  wget::fetch { 'download-androidsdk':
-    source      => $android::paths::source,
-    destination => $android::paths::archive,
-    before      => Exec['unpack-androidsdk'],
-  }
-
   case $::kernel {
     'Linux': {
-      $unpack_command = "tar -xvf ${android::paths::archive} --no-same-owner --no-same-permissions"
+      $unpack_command = "/bin/tar -xvf ${android::paths::archive} --no-same-owner --no-same-permissions"
     }
     'Darwin': {
-      $unpack_command = "unzip ${android::paths::archive}"
+      $unpack_command = "/usr/bin/unzip ${android::paths::archive}"
     }
     default: {
       fail("Unsupported Kernel: ${::kernel} operatingsystem: ${::operatingsystem}")
@@ -38,12 +32,15 @@ class android::sdk {
     owner  => $android::user,
     group  => $android::group,
   } ->
+  wget::fetch { 'download-androidsdk':
+    source      => $android::paths::source,
+    destination => $android::paths::archive,
+  } ->
   exec { 'unpack-androidsdk':
     command => $unpack_command,
     creates => $android::paths::sdk_home,
     cwd     => $android::paths::installdir,
     user    => $android::user,
-    require => File[$android::paths::installdir],
   }
 
   # For 64bit systems, we need to install some 32bit libraries for the SDK

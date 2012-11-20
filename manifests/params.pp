@@ -12,20 +12,19 @@
 #
 class android::params {
 
-  $version = '20.0.3'
+  $version    = '20.0.3'
   $proxy_host = undef
   $proxy_port = undef
+  $installdir = '/usr/local/android'
   
   case $::kernel {
     'Linux': {
-      $user = 'root'
-      $group = 'root'
-      $installdir = '/usr/local/android'
+      $user       = 'root'
+      $group      = 'root'
     }
     'Darwin': {
-      $user = 'root'
-      $group = 'admin'
-      $installdir = '/Developer/android'
+      $user       = 'root'
+      $group      = 'admin'
     }
     default: {
       fail("Unsupported Kernel: ${::kernel} operatingsystem: ${::operatingsystem}")

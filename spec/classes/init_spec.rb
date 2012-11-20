@@ -15,7 +15,7 @@ describe "android" do
 
     it { should contain_Wget__Fetch("download-androidsdk").with({ 
       :source => "http://dl.google.com/android/android-sdk_r#{default_version}-linux.tgz",
-      :destination => "/usr/local/src/android-sdk_r#{default_version}-linux.tgz"}) 
+      :destination => "/usr/local/android/android-sdk_r#{default_version}-linux.tgz"}) 
     }
     it { should contain_exec('update-android-package-platform-tools')
         .with_command('/usr/local/android/android-sdk-linux/tools/android update sdk -u -t platform-tools  ') 
@@ -32,7 +32,7 @@ describe "android" do
     } }
     it { should contain_Wget__Fetch("download-androidsdk").with({ 
       :source => "http://dl.google.com/android/android-sdk_r#{version}-linux.tgz",
-      :destination => "/usr/local/src/android-sdk_r#{version}-linux.tgz"}) 
+      :destination => "/usr/local/android/android-sdk_r#{version}-linux.tgz"}) 
     }
 
   end
@@ -68,13 +68,13 @@ describe "android" do
 
       it { should contain_Wget__Fetch("download-androidsdk").with({ 
         :source => "http://dl.google.com/android/android-sdk_r#{default_version}-macosx.zip",
-        :destination => "/Developer/android/android-sdk_r#{default_version}-macosx.zip"}) 
+        :destination => "/usr/local/android/android-sdk_r#{default_version}-macosx.zip"}) 
       }
       it { should contain_exec('update-android-package-platform-tools')
-          .with_command('/Developer/android/android-sdk-macosx/tools/android update sdk -u -t platform-tools  ') 
+          .with_command('/usr/local/android/android-sdk-macosx/tools/android update sdk -u -t platform-tools  ') 
       }
 
-      it { should contain_file('/Developer/android').with( { :owner => 'root', :group => 'admin' }) }
-      it { should contain_exec('unpack-androidsdk').with( { :cwd => '/Developer/android',:user => 'root' } ) }
+      it { should contain_file('/usr/local/android').with( { :owner => 'root', :group => 'admin' }) }
+      it { should contain_exec('unpack-androidsdk').with( { :cwd => '/usr/local/android',:user => 'root' } ) }
     end
 end
