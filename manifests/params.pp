@@ -12,7 +12,7 @@
 #
 class android::params {
 
-  $version    = '20.0.3'
+  $version    = '21.1'
   $proxy_host = undef
   $proxy_port = undef
   $installdir = '/usr/local/android'
