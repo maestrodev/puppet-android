@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "android" do
-  default_version = '20.0.3'
+  default_version = '21.1'
   let(:facts) { {
     :operatingsystem => 'CentOS',
     :kernel => 'Linux',
