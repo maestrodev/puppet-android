@@ -49,7 +49,8 @@ class android::sdk {
     case $::osfamily {
       'RedHat': {
         # list 64-bit version and use latest for installation too so that the same version is applied to both
-        $32bit_packages =  [ 'glibc.i686', 'zlib.i686', 'libstdc++.i686', 'libstdc++' ]
+        $32bit_packages =  [ 'glibc.i686', 'zlib.i686', 'libstdc++.i686', 
+                             'glibc', 'zlib', 'libstdc++' ]
       }
       'Debian': {
         $32bit_packages =  [ 'ia32-libs' ]
