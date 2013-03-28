@@ -48,7 +48,8 @@ class android::sdk {
   if ($::kernel == 'Linux') and ($::architecture == 'x86_64' or $::architecture == 'amd64') {
     case $::osfamily {
       'RedHat': {
-        $32bit_packages =  [ 'glibc.i686', 'zlib.i686', 'libstdc++.i686' ]
+        # list 64-bit version and use latest for installation too so that the same version is applied to both
+        $32bit_packages =  [ 'glibc.i686', 'zlib.i686', 'libstdc++.i686', 'libstdc++' ]
       }
       'Debian': {
         $32bit_packages =  [ 'ia32-libs' ]
@@ -59,7 +60,7 @@ class android::sdk {
     }
     if $32bit_packages != undef {
       package { $32bit_packages:
-        ensure => installed,
+        ensure => latest,
       }
     }
   }
