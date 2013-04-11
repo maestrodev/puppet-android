@@ -1,5 +1,3 @@
 fixtures:
-  repositories:
-    wget: https://github.com/maestrodev/puppet-wget.git
   symlinks:
     android: "#{source_dir}"
