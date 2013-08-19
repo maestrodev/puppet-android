@@ -61,7 +61,7 @@ class android::sdk {
     }
     if $32bit_packages != undef {
       package { $32bit_packages:
-        ensure => latest,
+        ensure => present,
       }
     }
   }
