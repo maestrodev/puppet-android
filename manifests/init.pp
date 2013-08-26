@@ -27,7 +27,9 @@ class android(
   $proxy_host = $android::params::proxy_host,
   $proxy_port = $android::params::proxy_port) inherits android::params {
 
-  include android::paths
-  include android::sdk
-  include android::platform_tools
+  anchor { 'android::begin': } ->
+  class { 'android::paths': } ->
+  class { 'android::sdk': } ->
+  class { 'android::platform_tools': } ->
+  anchor { 'android::end': }
 }

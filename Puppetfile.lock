@@ -2,7 +2,9 @@ FORGE
   remote: http://forge.puppetlabs.com
   specs:
     maestrodev/wget (1.1.0)
+    puppetlabs/stdlib (3.2.0)
 
 DEPENDENCIES
   maestrodev/wget (>= 1.0.0)
+  puppetlabs/stdlib (= 3.2.0)
 
