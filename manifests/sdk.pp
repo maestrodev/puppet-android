@@ -61,7 +61,7 @@ class android::sdk {
           }
           exec { "apt-get update":
           command => "/usr/bin/apt-get update",
-          onlyif => "/bin/sh -c '[ ! -f /var/cache/apt/pkgcache.bin ] || /usr/bin/find /etc/apt/* -cnewer /var/cache/apt/pkgcache.bin | /bin/grep . > /dev/null'",
+          require => Exec['add-i386'],
           }
           $32bit_packages =  [ 'libc6:i386' ]
         }
