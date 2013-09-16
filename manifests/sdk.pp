@@ -53,7 +53,17 @@ class android::sdk {
                              'zlib', 'libstdc++' ]
       }
       'Debian': {
+      case $::lsbdistcodename {
+        'wheezy': { 
+          exec { 'add-i386':
+          command => '/usr/bin/dpkg --add-architecture i386',
+          unless  => '/usr/bin/dpkg --print-foreign-architectures | /bin/grep i386';
+          }
+        $32bit_packages =  [ 'libc6:i386' ]
+        }
+        default : {
         $32bit_packages =  [ 'ia32-libs' ]
+        }
       }
       default : {
         $32bit_packages = undef
