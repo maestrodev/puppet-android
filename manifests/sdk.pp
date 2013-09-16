@@ -64,7 +64,7 @@ class android::sdk {
         default : {
         $32bit_packages =  [ 'ia32-libs' ]
         }
-      }
+      
       default : {
         $32bit_packages = undef
       }
