@@ -71,6 +71,7 @@ class android::sdk {
     }
     if $32bit_packages != undef {
       ensure_packages($32bit_packages)
+      }
     }
   }
 }
