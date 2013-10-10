@@ -1,5 +1,5 @@
 name 'maestrodev-android'
-version '1.1.3'
+version '1.1.4'
 
 author 'maestrodev'
 license 'Apache License, Version 2.0'
