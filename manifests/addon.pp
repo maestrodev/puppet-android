@@ -11,7 +11,6 @@
 # Copyright 2012 MaestroDev, unless otherwise noted.
 #
 define android::addon() {
-  include android::package
 
   android::package{ $title:
     type => 'addon',
