@@ -6,5 +6,5 @@ FORGE
 
 DEPENDENCIES
   maestrodev/wget (>= 1.0.0)
-  puppetlabs/stdlib (= 3.2.0)
+  puppetlabs/stdlib (>= 3.2.0)
 
