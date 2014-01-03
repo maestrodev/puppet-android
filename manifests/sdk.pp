@@ -46,21 +46,11 @@ class android::sdk {
   # For 64bit systems, we need to install some 32bit libraries for the SDK
   # to work.
   if ($::kernel == 'Linux') and ($::architecture == 'x86_64' or $::architecture == 'amd64') {
-    case $::osfamily {
-      'RedHat': {
-        # list 64-bit version and use latest for installation too so that the same version is applied to both
-        $32bit_packages =  [ 'glibc.i686', 'zlib.i686', 'libstdc++.i686',
-                             'zlib', 'libstdc++' ]
-      }
-      'Debian': {
-        $32bit_packages =  [ 'ia32-libs' ]
-      }
-      default : {
-        $32bit_packages = undef
-      }
-    }
-    if $32bit_packages != undef {
-      ensure_packages($32bit_packages)
-    }
+    ensure_packages($::osfamily ? {
+      # list 64-bit version and use latest for installation too so that the same version is applied to both
+      'RedHat' => ['glibc.i686','zlib.i686','libstdc++.i686','zlib','libstdc++'],
+      'Debian' => ['ia32-libs'],
+      default  => [],
+    })
   }
 }
