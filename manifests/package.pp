@@ -4,7 +4,7 @@
 #
 # === Parameters
 #
-# [*type*] One of platform-tools, platform or addon. Indicates
+# [*type*] One of platform-tools, platform, addon or build-tools. Indicates
 # the type of package to install.
 #
 # === Authors
@@ -31,15 +31,19 @@ define android::package($type) {
     'addon': {
       $creates = "${android::paths::sdk_home}/add-ons/${title}"
     }
+    'build-tools': {
+      $title_parts = split($title, '-')
+      
+      $creates = "${android::paths::sdk_home}/build-tools/${title_parts[2]}"
+    }
     default: {
       fail("Unsupported package type: ${type}")
     }
-
-
   }
 
+  file { "${android::installdir}/expect-install-${title}": content => template("android/expect-script.erb") } ->
   exec { "update-android-package-${title}":
-    command => "${android::paths::sdk_home}/tools/android update sdk -u -t ${title} ${proxy_host} ${proxy_port}",
+    command => "/usr/bin/expect -f ${android::installdir}/expect-install-${title}",
     creates => $creates,
     timeout => 0,
     require => Class['Android::Sdk']

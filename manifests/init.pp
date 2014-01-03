@@ -29,6 +29,9 @@ class android(
 
   anchor { 'android::begin': } ->
   class { 'android::paths': } ->
+  package { "expect":
+    ensure => present
+  } ->
   class { 'android::sdk': } ->
   class { 'android::platform_tools': } ->
   anchor { 'android::end': }
