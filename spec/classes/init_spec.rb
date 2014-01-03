@@ -9,9 +9,9 @@ describe "android" do
   } }
 
   context 'default' do
-    it { should include_class('android::paths') }
-    it { should include_class('android::sdk') }
-    it { should include_class('android::platform_tools') }
+    it { should contain_class('android::paths') }
+    it { should contain_class('android::sdk') }
+    it { should contain_class('android::platform_tools') }
 
     it { should contain_Wget__Fetch("download-androidsdk").with({ 
       :source => "http://dl.google.com/android/android-sdk_r#{default_version}-linux.tgz",
