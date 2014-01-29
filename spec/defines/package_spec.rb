@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe 'android::package' do
 
+  let(:dir) { '/usr/local/android' }
+
   context 'linux' do
     let(:facts) { {
       :operatingsystem => 'CentOS',
@@ -10,10 +12,11 @@ describe 'android::package' do
     } }
     let(:title) { 'android-15' }
     let(:params) { { :type => 'platform' } }
-    creates = '/usr/local/android/android-sdk-linux/platforms/android-15'
+    it { should contain_file("#{dir}/expect-install-android-15")
+      .with_content(/android update sdk -u -t android-15/) }
     it { should contain_exec('update-android-package-android-15').with({
-      :command => '/usr/local/android/android-sdk-linux/tools/android update sdk -u -t android-15  ',
-      :creates => creates,
+      :command => "/usr/bin/expect -f #{dir}/expect-install-android-15",
+      :creates => "#{dir}/android-sdk-linux/platforms/android-15",
     }) }
   end
   
@@ -39,10 +42,10 @@ describe 'android::package' do
     } }
     let(:title) { 'android-15' }
     let(:params) { { :type => 'platform' } }
-    creates = '/usr/local/android/android-sdk-macosx/platforms/android-15'
+    it { should contain_file("#{dir}/expect-install-android-15").with_content(/android update sdk -u -t android-15/) }
     it { should contain_exec('update-android-package-android-15').with({
-      :command => '/usr/local/android/android-sdk-macosx/tools/android update sdk -u -t android-15  ',
-      :creates => creates,
+      :command => "/usr/bin/expect -f #{dir}/expect-install-android-15",
+      :creates => "#{dir}/android-sdk-macosx/platforms/android-15",
     }) }
   end
 
