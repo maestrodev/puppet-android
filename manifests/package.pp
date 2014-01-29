@@ -41,12 +41,16 @@ define android::package($type) {
     }
   }
 
-  file { "${android::installdir}/expect-install-${title}": content => template("android/expect-script.erb") } ->
+  ensure_packages(['expect'])
+
+  file { "${android::installdir}/expect-install-${title}":
+    content => template("android/expect-script.erb"),
+  } ->
   exec { "update-android-package-${title}":
     command => "/usr/bin/expect -f ${android::installdir}/expect-install-${title}",
     creates => $creates,
     timeout => 0,
-    require => Class['Android::Sdk']
+    require => [Class['Android::Sdk'],Package['expect']],
   }
 
 
