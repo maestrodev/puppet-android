@@ -4,12 +4,6 @@ describe "android" do
   let(:version) { '22.3' }
   let(:dir) { '/usr/local/android' }
 
-  let(:facts) { {
-    :operatingsystem => 'CentOS',
-    :kernel => 'Linux',
-    :osfamily => 'RedHat'
-  } }
-
   context 'default' do
     it { should contain_class('android::paths') }
     it { should contain_class('android::sdk') }

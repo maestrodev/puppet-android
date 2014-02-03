@@ -5,11 +5,6 @@ describe 'android::package' do
   let(:dir) { '/usr/local/android' }
 
   context 'linux' do
-    let(:facts) { {
-      :operatingsystem => 'CentOS',
-      :kernel => 'Linux',
-      :osfamily => 'RedHat'
-    } }
     let(:title) { 'android-15' }
     let(:params) { { :type => 'platform' } }
     it { should contain_file("#{dir}/expect-install-android-15")
@@ -21,11 +16,6 @@ describe 'android::package' do
   end
   
   context 'bad package type' do
-    let(:facts) { {
-      :operatingsystem => 'CentOS',
-      :kernel => 'Linux',
-      :osfamily => 'RedHat'
-    } }
     let(:title) { 'bad' }
     let(:params) { { :type => 'bad' } }
     
