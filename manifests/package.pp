@@ -41,7 +41,12 @@ define android::package($type) {
     }
   }
 
-  ensure_packages(['expect'])
+  case $::kernel {
+    'Darwin': {}
+    default: {
+      ensure_packages(['expect'])
+    }
+  }
 
   file { "${android::installdir}/expect-install-${title}":
     content => template("android/expect-script.erb"),
