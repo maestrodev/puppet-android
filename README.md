@@ -12,8 +12,8 @@ Supported platforms:
 Examples
 --------
 
-To install the Android SDK in the default location (/usr/local/android on Linux
-and /Developer/android on Mac OS X) you simply include the android class like so.
+To install the Android SDK in the default location (/usr/local/android on both Linux
+and Mac OS X) you simply include the android class like so.
 
 ```
   include android
