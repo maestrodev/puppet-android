@@ -45,6 +45,7 @@ define android::package($type) {
     'Darwin': {}
     default: {
       ensure_packages(['expect'])
+      Package['expect'] -> Exec["update-android-package-${title}"]
     }
   }
 
@@ -55,7 +56,7 @@ define android::package($type) {
     command => "/usr/bin/expect -f ${android::installdir}/expect-install-${title}",
     creates => $creates,
     timeout => 0,
-    require => [Class['Android::Sdk'],Package['expect']],
+    require => [Class['Android::Sdk']],
   }
 
 
