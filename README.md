@@ -38,7 +38,7 @@ To install an android platform, do it like so:
 You can also install add-ons:
 
 ```
-  android::addon { 'some-add-on': }
+  android::addon { 'addon-google_apis-google-16': }
 ```
 
 License
