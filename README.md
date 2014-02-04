@@ -41,6 +41,12 @@ You can also install add-ons:
   android::addon { 'addon-google_apis-google-16': }
 ```
 
+To install Android SDK Build-tools, revision 19.0.1
+
+```
+  android::build_tools { 'build-tools-19.0.1': }
+```
+
 Tip: to get the appropriate name of the add-ons run the following command:
 
 ```
@@ -50,7 +56,7 @@ Tip: to get the appropriate name of the add-ons run the following command:
 License
 -------
 ```
-  Copyright 2012 MaestroDev
+  Copyright 2012-2014 MaestroDev
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
