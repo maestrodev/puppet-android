@@ -4,7 +4,7 @@
 #
 # === Parameters
 #
-# [*type*] One of platform-tools, platform, addon or build-tools. Indicates
+# [*type*] One of platform-tools, platform, addon, extra or build-tools. Indicates
 # the type of package to install.
 #
 # === Authors
@@ -30,6 +30,10 @@ define android::package($type) {
     }
     'addon': {
       $creates = "${android::paths::sdk_home}/add-ons/${title}"
+    }
+    'extra': {
+      $title_parts = split($title, '-')
+      $creates = "${android::paths::sdk_home}/extras/${title_parts[1]}/${title_parts[2]}"
     }
     'build-tools': {
       $title_parts = split($title, '-')
