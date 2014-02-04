@@ -4,7 +4,7 @@ describe 'android::package' do
 
   let(:dir) { '/usr/local/android' }
 
-  context 'linux' do
+  context 'linux', :compile do
     let(:title) { 'android-15' }
     let(:params) { { :type => 'platform' } }
     it { should contain_file("#{dir}/expect-install-android-15")
@@ -26,7 +26,7 @@ describe 'android::package' do
     end
   end
   
-  context 'Mac OS X' do
+  context 'Mac OS X', :compile do
     let(:facts) { {
       :kernel => 'Darwin',
     } }

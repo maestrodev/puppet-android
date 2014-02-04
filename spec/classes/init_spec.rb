@@ -4,7 +4,7 @@ describe "android" do
   let(:version) { '22.3' }
   let(:dir) { '/usr/local/android' }
 
-  context 'default' do
+  context 'default', :compile do
     it { should contain_class('android::paths') }
     it { should contain_class('android::sdk') }
     it { should contain_class('android::platform_tools') }
@@ -23,7 +23,7 @@ describe "android" do
     it { should contain_exec('unpack-androidsdk').with( { :cwd => dir, :user => 'root' } ) }
   end
 
-  context 'non-default version' do
+  context 'non-default version', :compile do
     let(:version) { '2.0.0' }
     let(:params) { {
       :version => version
@@ -35,7 +35,7 @@ describe "android" do
 
   end
 
-  context 'with proxy' do
+  context 'with proxy', :compile do
     let(:params) { {
       :proxy_host => 'myhost',
       :proxy_port => '1234'
@@ -47,13 +47,13 @@ describe "android" do
       .with_command("/usr/bin/expect -f #{dir}/expect-install-platform-tools") }
   end
 
-  context 'with installdir' do
+  context 'with installdir', :compile do
     let(:params) { { :installdir => '/myinstalldir' } }
     it { should contain_file('/myinstalldir') }
     it { should contain_exec('unpack-androidsdk').with_cwd('/myinstalldir') }
   end
 
-  context 'with different owner' do
+  context 'with different owner', :compile do
     let(:params) { {
       :user => 'myuser',
       :group => 'mygroup'
@@ -62,7 +62,7 @@ describe "android" do
     it { should contain_file(dir).with( { :owner => 'myuser', :group => 'mygroup' } ) }
   end
 
-  context 'Mac OS X' do
+  context 'Mac OS X', :compile do
    let(:facts) { {
         :kernel => 'Darwin',
     } }

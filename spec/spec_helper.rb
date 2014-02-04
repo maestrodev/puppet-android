@@ -5,6 +5,7 @@ RSpec.configure do |c|
     Puppet::Util::Log.level = :warning
     Puppet::Util::Log.newdestination(:console)
   end
+  c.treat_symbols_as_metadata_keys_with_true_values = true
 
   c.default_facts = {
     :operatingsystem => 'CentOS',
@@ -12,4 +13,13 @@ RSpec.configure do |c|
     :osfamily => 'RedHat',
     :architecture => 'x86_64'
   }
+
+  c.before do
+    # avoid "Only root can execute commands as other users"
+    Puppet.features.stubs(:root? => true)
+  end
+end
+
+shared_examples :compile, :compile => true do
+  it { should compile.with_all_deps }
 end
