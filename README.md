@@ -41,7 +41,13 @@ You can also install add-ons:
   android::addon { 'addon-google_apis-google-16': }
 ```
 
-Tip: to get the appropriate name of the add-ons run the following command:
+Or extra's:
+
+```
+  android::extra { 'extra-google-play_billing' }
+```
+
+Tip: to get the appropriate name of the add-ons/extras run the following command:
 
 ```
 /usr/local/android/android-sdk-macosx/tools/android list sdk -u --all --extended|grep " or "
