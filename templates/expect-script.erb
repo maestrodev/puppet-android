@@ -1,5 +1,5 @@
 set timeout -1;
-spawn <%= scope.lookupvar('android::paths::sdk_home') %>/tools/android update sdk -u -t <%= @title %> <%= @proxy_host %> <%= @proxy_port %>; 
+spawn <%= scope.lookupvar('android::paths::sdk_home') %>/tools/android update sdk -u --all -t <%= @title %> <%= @proxy_host %> <%= @proxy_port %>; 
 expect { 
     "Do you accept the license" { exp_send "y\r" ; exp_continue }
     eof
