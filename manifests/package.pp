@@ -29,7 +29,8 @@ define android::package($type) {
       $creates = "${android::paths::sdk_home}/platforms/${title}"
     }
     'system-images': {
-      $creates = "${android::paths::sdk_home}/system-images/${title}"
+      $title_parts = split($title, '-')
+      $creates = "${android::paths::sdk_home}/system-images/android-${title_parts[1]}"
     }
     'addon': {
       $creates = "${android::paths::sdk_home}/add-ons/${title}"
