@@ -64,7 +64,7 @@ define android::package($type) {
     command => "/usr/bin/expect -f ${android::installdir}/expect-install-${title}",
     creates => $creates,
     timeout => 0,
-    require => [Class['Android::Sdk']],
+    require => [Class['android::sdk']],
   }
 
 
