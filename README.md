@@ -1,6 +1,8 @@
 Puppet Module for Android SDK
 =============================
 
+[![Build Status](https://maestro.maestrodev.com/api/v1/projects/58/compositions/443/badge/icon)](https://maestro.maestrodev.com/projects/58/compositions/443)
+
 This Puppet module is used to install the Android SDK, 
 along with platforms and other add-ons.
 
