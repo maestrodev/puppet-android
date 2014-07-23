@@ -29,6 +29,8 @@ class android::paths{
       fail("Unsupported Kernel: ${::kernel} operatingsystem: ${::operatingsystem}")
     }
   }
-  $source  = "http://dl.google.com/android/${distrib_file}"
-  $archive = "${installdir}/${distrib_file}"
+  $source   = "http://dl.google.com/android/${distrib_file}"
+  $archive  = "${installdir}/${distrib_file}"
+
+  $toolsdir = "${sdk_home}/tools"
 }
