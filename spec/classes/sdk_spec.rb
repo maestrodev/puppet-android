@@ -7,8 +7,22 @@ describe "android::sdk" do
     it { should contain_package('glibc.i686') }
     it { should contain_package('zlib.i686') }
     it { should contain_package('libstdc++.i686') }
+    it { should contain_file('android-executable').with({
+      'path' => '/usr/local/android/android-sdk-linux/tools/android',
+      'mode' => '0755',
+      }).that_requires('Exec[unpack-androidsdk]')
+    }
   end
 
+  context '64bit RedHat, custom installdir', :compile do
+    let(:pre_condition) { 'class { "android": installdir => "/opt/android" }' }
+
+    it { should contain_file('android-executable').with({
+      'path' => '/opt/android/android-sdk-linux/tools/android',
+      'mode' => '0755',
+      }).that_requires('Exec[unpack-androidsdk]')
+    }
+  end
 
   context '64bit Debian, x86_64 architecture', :compile do
     let(:facts) { {

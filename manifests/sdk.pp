@@ -41,6 +41,13 @@ class android::sdk {
     creates => $android::paths::sdk_home,
     cwd     => $android::paths::installdir,
     user    => $android::user,
+  }->
+  file { 'android-executable':
+    ensure => present,
+    path   => "${android::paths::toolsdir}/android",
+    owner  => $android::user,
+    group  => $android::group,
+    mode   => '0755',
   }
 
   # For 64bit systems, we need to install some 32bit libraries for the SDK
