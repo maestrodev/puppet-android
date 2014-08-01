@@ -15,6 +15,10 @@ class android::sdk {
   include android::paths
   include wget
 
+  if ( $::id == 'root' ) {
+    Exec { user => $android::user }
+  }
+
   case $::kernel {
     'Linux': {
       $unpack_command = "/bin/tar -xvf ${android::paths::archive} --no-same-owner --no-same-permissions && chmod -R a+rx ${android::paths::sdk_home}"
@@ -40,7 +44,6 @@ class android::sdk {
     command => $unpack_command,
     creates => $android::paths::sdk_home,
     cwd     => $android::paths::installdir,
-    user    => $android::user,
   }->
   file { 'android-executable':
     ensure => present,

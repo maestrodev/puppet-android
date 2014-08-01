@@ -18,6 +18,10 @@
 define android::package($type) {
   include android
 
+  if ( $::id == 'root' ) {
+    Exec { user => $android::user }
+  }
+
   $proxy_host = $android::proxy_host ? { undef => '', default => "--proxy-host ${android::proxy_host}" }
   $proxy_port = $android::proxy_port ? { undef => '', default => "--proxy-port ${android::proxy_port}" }
 
