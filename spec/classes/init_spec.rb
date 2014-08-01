@@ -3,6 +3,9 @@ require 'spec_helper'
 describe "android" do
   let(:version) { '22.3' }
   let(:dir) { '/usr/local/android' }
+  let(:facts) { {
+    :id => 'root',
+  } }
 
   context 'default', :compile do
     it { should contain_class('android::paths') }
@@ -58,13 +61,31 @@ describe "android" do
       :user => 'myuser',
       :group => 'mygroup'
     } }
+    let(:facts) { {
+      :id => 'root',
+    } }
     it { should contain_exec('unpack-androidsdk').with_user('myuser') }
+    it { should contain_exec('update-android-package-platform-tools').with_user('myuser') }
+    it { should contain_file(dir).with( { :owner => 'myuser', :group => 'mygroup' } ) }
+  end
+
+  context 'as non-root user', :compile do
+    let(:params) { {
+      :user => 'myuser',
+      :group => 'mygroup'
+    } }
+    let(:facts) { {
+      :id => 'myuser',
+    } }
+    it { should contain_exec('unpack-androidsdk').without_user }
+    it { should contain_exec('update-android-package-platform-tools').without_user }
     it { should contain_file(dir).with( { :owner => 'myuser', :group => 'mygroup' } ) }
   end
 
   context 'Mac OS X', :compile do
    let(:facts) { {
         :kernel => 'Darwin',
+        :id => 'root',
     } }
     let(:params) { {
       :proxy_host => 'myhost',
