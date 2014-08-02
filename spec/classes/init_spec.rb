@@ -20,7 +20,7 @@ describe "android" do
     it { should contain_file("#{dir}/expect-install-platform-tools")
       .with_content(/android update sdk -u --all -t platform-tools/) }
     it { should contain_exec('update-android-package-platform-tools')
-      .with_command("/usr/bin/expect -f #{dir}/expect-install-platform-tools") }
+      .with_command("#{dir}/expect-install-platform-tools") }
 
     it { should contain_file(dir).with( { :owner => 'root', :group => 'root' }) }
     it { should contain_exec('unpack-androidsdk').with( { :cwd => dir, :user => 'root' } ) }
@@ -47,7 +47,7 @@ describe "android" do
     it { should contain_file("#{dir}/expect-install-platform-tools")
       .with_content(/android update sdk -u --all -t platform-tools --proxy-host myhost --proxy-port 1234/) }
     it { should contain_exec('update-android-package-platform-tools')
-      .with_command("/usr/bin/expect -f #{dir}/expect-install-platform-tools") }
+      .with_command("#{dir}/expect-install-platform-tools") }
   end
 
   context 'with installdir', :compile do
@@ -100,7 +100,7 @@ describe "android" do
     it { should contain_file("#{dir}/expect-install-platform-tools")
       .with_content(/android update sdk -u --all -t platform-tools --proxy-host myhost --proxy-port 1234/) }
     it { should contain_exec('update-android-package-platform-tools')
-      .with_command("/usr/bin/expect -f #{dir}/expect-install-platform-tools") }
+      .with_command("#{dir}/expect-install-platform-tools") }
 
     it { should contain_file(dir).with( { :owner => 'root', :group => 'admin' }) }
     it { should contain_exec('unpack-androidsdk').with( { :cwd => dir,:user => 'root' } ) }

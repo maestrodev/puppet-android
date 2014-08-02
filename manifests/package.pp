@@ -53,19 +53,12 @@ define android::package($type) {
     }
   }
 
-  case $::kernel {
-    'Darwin': {}
-    default: {
-      ensure_packages(['expect'])
-      Package['expect'] -> Exec["update-android-package-${title}"]
-    }
-  }
-
   file { "${android::installdir}/expect-install-${title}":
     content => template("android/expect-script.erb"),
+    mode    => '0755',
   } ->
   exec { "update-android-package-${title}":
-    command => "/usr/bin/expect -f ${android::installdir}/expect-install-${title}",
+    command => "${android::installdir}/expect-install-${title}",
     creates => $creates,
     timeout => 0,
     require => [Class['android::sdk']],
