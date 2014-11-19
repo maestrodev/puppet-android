@@ -5,6 +5,7 @@ Puppet Module for Android SDK
 
 This Puppet module is used to install the Android SDK, 
 along with platforms and other add-ons.
+You may need to install Java separately.
 
 Supported platforms:
 
@@ -17,9 +18,8 @@ Examples
 To install the Android SDK in the default location (/usr/local/android on both Linux
 and Mac OS X) you simply include the android class like so.
 
-```
-  include android
-```
+    class { 'java': } ->
+    class { 'android': }
 
 You can also change the default parameters like so:
 
