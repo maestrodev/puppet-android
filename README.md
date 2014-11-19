@@ -46,7 +46,7 @@ You can also install add-ons:
 Or extra's:
 
 ```
-  android::extra { 'extra-google-play_billing' }
+  android::extra { 'extra-google-play_billing': }
 ```
 
 To install Android SDK Build-tools, revision 19.0.1
