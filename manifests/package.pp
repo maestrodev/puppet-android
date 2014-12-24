@@ -54,7 +54,7 @@ define android::package($type) {
   }
 
   file { "${android::installdir}/expect-install-${title}":
-    content => template("android/expect-script.erb"),
+    content => template('android/expect-script.erb'),
     mode    => '0755',
   } ->
   exec { "update-android-package-${title}":
