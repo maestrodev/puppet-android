@@ -1,3 +1,5 @@
+Rakefile:
+  strict_variables: false
 spec/spec_helper_acceptance.rb:
   modules:
     - name: puppetlabs-stdlib
