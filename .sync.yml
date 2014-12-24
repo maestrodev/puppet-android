@@ -8,3 +8,6 @@ spec/spec_helper_acceptance.rb:
       version: 1.2.0
     - name: puppetlabs-wget
       version: 1.0.0
+    - name: stahnma-epel
+      version: 0.1.0
+      osfamily: RedHat
