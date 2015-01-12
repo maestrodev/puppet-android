@@ -17,6 +17,8 @@ class android::params {
   $proxy_port = undef
   $installdir = '/usr/local/android'
   
+  $ndk_version = 'android-ndk-r10d-linux-x86_64.bin'
+
   case $::kernel {
     'Linux': {
       $user       = 'root'

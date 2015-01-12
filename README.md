@@ -3,7 +3,7 @@ Puppet Module for Android SDK
 
 [![Build Status](https://maestro.maestrodev.com/api/v1/projects/58/compositions/443/badge/icon)](https://maestro.maestrodev.com/projects/58/compositions/443)
 
-This Puppet module is used to install the Android SDK, 
+This Puppet module is used to install the Android SDK and NDK, 
 along with platforms and other add-ons.
 You may need to install Java separately.
 
@@ -30,6 +30,16 @@ You can also change the default parameters like so:
     installdir => '/path/to/your/dir',
   }
 ```
+
+You can install the Android NDK like so:
+
+```
+class { 'android::ndk' :
+  ndk_version => 'android-ndk-r10c-linux-x86_64.bin'
+}
+```
+
+Note that the NDK is downloaded and executed, so only newer NDK versions are supported. The older tar archives will not work properly.
 
 To install an android platform, do it like so:
 
