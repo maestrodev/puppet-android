@@ -35,7 +35,7 @@ class android::ndk(
     mode   => '0755'
   } ->
   exec { 'run-androidndk':
-    command => $ndk_installer,
+    command => "${ndk_installer} -y",
     cwd     => $android::params::installdir,
   }
 
