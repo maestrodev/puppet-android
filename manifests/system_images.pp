@@ -10,10 +10,11 @@
 #
 # Copyright 2013 Philip Schiffer
 #
-define android::system_images() {
+define android::system_images($expected_path = undef) {
 
   android::package{ $title:
-    type => 'system-images',
+    type          => 'system-images',
+    expected_path => $expected_path,
   }
 
 }
