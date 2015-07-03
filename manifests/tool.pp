@@ -12,7 +12,8 @@
 
 class android::tool {
 
-    android::update { "tool":
-      keyword => "Android SDK Tools, revision",
-    }
+  android::package{ 'tool':
+    type => 'tool',
+  }
+
 }

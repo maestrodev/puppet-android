@@ -25,41 +25,13 @@ define android::package($type) {
   $proxy_host = $android::proxy_host ? { undef => '', default => "--proxy-host ${android::proxy_host}" }
   $proxy_port = $android::proxy_port ? { undef => '', default => "--proxy-port ${android::proxy_port}" }
 
-  case $type {
-    'platform-tools': {
-      $creates = "${android::paths::sdk_home}/platform-tools"
-    }
-    'platform': {
-      $creates = "${android::paths::sdk_home}/platforms/${title}"
-    }
-    'system-images': {
-      $title_parts = split($title, '-')
-      $creates = "${android::paths::sdk_home}/system-images/android-${title_parts[1]}"
-    }
-    'addon': {
-      $creates = "${android::paths::sdk_home}/add-ons/${title}"
-    }
-    'extra': {
-      $title_parts = split($title, '-')
-      $creates = "${android::paths::sdk_home}/extras/${title_parts[1]}/${title_parts[2]}"
-    }
-    'build-tools': {
-      $title_parts = split($title, '-')
-      
-      $creates = "${android::paths::sdk_home}/build-tools/${title_parts[2]}"
-    }
-    default: {
-      fail("Unsupported package type: ${type}")
-    }
-  }
-
   file { "${android::installdir}/expect-install-${title}":
     content => template("android/expect-script.erb"),
     mode    => '0755',
   } ->
   exec { "update-android-package-${title}":
     command => "${android::installdir}/expect-install-${title}",
-    creates => $creates,
+    onlyif  => "${android::paths::toolsdir}/android list sdk -u -e | grep '${title}'",
     timeout => 0,
     require => [Class['android::sdk']],
   }
