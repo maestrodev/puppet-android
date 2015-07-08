@@ -47,7 +47,7 @@ RSpec.configure do |c|
       on host, puppet('module', 'install', 'puppetlabs-stdlib', '--version=3.2.0'), { :acceptable_exit_codes => [0,1] } 
       on host, puppet('module', 'install', 'puppetlabs-java', '--version=1.2.0'), { :acceptable_exit_codes => [0,1] } 
       on host, puppet('module', 'install', 'puppetlabs-wget', '--version=1.0.0'), { :acceptable_exit_codes => [0,1] } 
-      on host, puppet('module', 'install', 'stahnma-epel', '--version=0.1.0'), { :acceptable_exit_codes => [0,1] } if fact('osfamily') == 'RedHat'
+      on host, puppet('module', 'install', 'stahnma-epel', '--version=0.1.0'), { :acceptable_exit_codes => [0,1] } if fact_on(host,'osfamily') == 'RedHat'
     end
   end
 
