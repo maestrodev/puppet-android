@@ -31,5 +31,6 @@ class android(
   class { 'android::paths': } ->
   class { 'android::sdk': } ->
   class { 'android::platform_tools': } ->
+  class { 'android::tool': } ->
   anchor { 'android::end': }
 }
