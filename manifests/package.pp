@@ -45,7 +45,6 @@ define android::package($type) {
     }
     'build-tools': {
       $title_parts = split($title, '-')
-      
       $creates = "${android::paths::sdk_home}/build-tools/${title_parts[2]}"
     }
     default: {
@@ -63,6 +62,5 @@ define android::package($type) {
     timeout => 0,
     require => [Class['android::sdk']],
   }
-
 
 }
