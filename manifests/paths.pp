@@ -11,7 +11,7 @@
 #
 # Copyright 2012 MaestroDev, unless otherwise noted.
 #
-class android::paths{
+class android::paths {
 
   $installdir = $android::installdir
   $version    = $android::version

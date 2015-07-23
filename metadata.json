@@ -3,7 +3,7 @@
   "version": "1.2.1",
   "author": "maestrodev",
   "summary": "Android SDK module for Puppet",
-  "license": "Apache License, Version 2.0",
+  "license": "Apache-2.0",
   "source": "http://github.com/maestrodev/puppet-android",
   "project_page": "http://github.com/maestrodev/puppet-android",
   "issues_url": "https://github.com/maestrodev/puppet-android/issues",
@@ -72,7 +72,8 @@
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
         "10.04",
-        "12.04"
+        "12.04",
+        "14.04"
       ]
     },
     {
