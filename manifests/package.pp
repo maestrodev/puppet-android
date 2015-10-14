@@ -34,7 +34,7 @@ define android::package($type) {
     }
     'system-images': {
       $title_parts = split($title, '-')
-      $creates = "${android::paths::sdk_home}/system-images/android-${title_parts[1]}"
+      $creates = "${android::paths::sdk_home}/system-images/android-${title_parts[-1]}/default/${title_parts[2]}-${title_parts[3]}"
     }
     'addon': {
       $creates = "${android::paths::sdk_home}/add-ons/${title}"
