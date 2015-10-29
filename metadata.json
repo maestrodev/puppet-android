@@ -1,6 +1,6 @@
 {
   "name": "maestrodev-android",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "author": "maestrodev",
   "summary": "Android SDK module for Puppet",
   "license": "Apache-2.0",
