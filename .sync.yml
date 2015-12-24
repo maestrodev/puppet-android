@@ -11,3 +11,5 @@ spec/spec_helper_acceptance.rb:
     - name: stahnma-epel
       version: 0.1.0
       osfamily: RedHat
+.travis.yml:
+  forge_password: "Dw4OARfXnfMZJHHwBC7oWWd7fd0H0jAIBG8m0hpgHabydhGiAotVsHjCVKb6dbmrhtVV/azUgvw3TIN5tmj0d+gfluTwlB/y7xH79nTN7everXKlzDKtbtfytIkxV5UrJ2bqFgncJ+sZMB133FFNjVVEOMYh2XtsPlJuTnBCkas="
