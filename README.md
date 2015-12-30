@@ -59,16 +59,49 @@ Or extra's:
   android::extra { 'extra-google-play_billing': }
 ```
 
+Or system images:
+
+```
+android::system_images { 'sys-img-armeabi-v7a-android-23': }
+```
+
 To install Android SDK Build-tools, revision 19.0.1
 
 ```
   android::build_tools { 'build-tools-19.0.1': }
 ```
 
-Tip: to get the appropriate name of the add-ons/extras run the following command:
+For add-ons, extras, platforms, and system images, the revision number can be
+specified using the optional `revision` parameter:
 
 ```
-/usr/local/android/android-sdk-macosx/tools/android list sdk -u --all --extended|grep " or "
+android::extra { 'extra-google-m2repository':
+  revision => '24',
+}
+```
+
+The add-on, extra, platform, or system image will only be upgraded only if the
+installed revision is not equal to the specified revision. For build-tools, the
+revision number forms part of the name of the build-tool, hence there is no
+`revision` parameter.
+
+The `revision` parameter can also take the value `present` that initially
+installs the latest version of the add-on, extra, platform, or system image, but
+does not upgrade it when a new version becomes available, and the value `latest`
+that always upgrades the add-on, extra, platform, or system image to the latest
+version:
+
+```
+android::extra { 'extra-android-m2repository':
+  revision => latest,
+}
+```
+
+Tip: To get the appropriate name of the add-on, extra, platform, or system
+image, run the following command:
+
+```
+android list sdk --all --extended --no-ui | grep " or "
 ```
 
 License

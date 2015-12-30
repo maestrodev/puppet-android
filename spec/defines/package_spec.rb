@@ -21,8 +21,8 @@ describe 'android::package' do
     
     it do
       expect {
-        should contain_exec('update-android-package-bad') 
-      }.to raise_error(Puppet::Error, /Unsupported package type: bad/) 
+        should raise_error(Puppet::Error, /Unsupported package type: bad/)
+      }
     end
   end
   

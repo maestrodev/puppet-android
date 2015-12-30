@@ -12,8 +12,7 @@
 #
 define android::build_tools() {
 
-  android::package{ $title:
+  android::package { $title:
     type => 'build-tools',
   }
-
 }

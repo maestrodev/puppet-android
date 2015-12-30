@@ -10,10 +10,12 @@
 #
 # Copyright 2012 MaestroDev, unless otherwise noted.
 #
-define android::platform() {
+define android::platform(
+  $revision = 'present',
+) {
 
-  android::package{ $title:
-    type => 'platform',
+  android::package { $title:
+    revision => $revision,
+    type     => 'platform',
   }
-
 }

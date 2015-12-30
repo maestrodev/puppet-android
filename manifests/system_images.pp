@@ -10,10 +10,12 @@
 #
 # Copyright 2013 Philip Schiffer
 #
-define android::system_images() {
+define android::system_images(
+  $revision = 'present',
+) {
 
-  android::package{ $title:
-    type => 'system-images',
+  android::package { $title:
+    revision => $revision,
+    type     => 'system-images',
   }
-
 }

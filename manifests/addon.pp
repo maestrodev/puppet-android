@@ -10,10 +10,12 @@
 #
 # Copyright 2012 MaestroDev, unless otherwise noted.
 #
-define android::addon() {
+define android::addon(
+  $revision = 'present',
+) {
 
-  android::package{ $title:
-    type => 'addon',
+  android::package { $title:
+    revision => $revision,
+    type     => 'addon',
   }
-
 }

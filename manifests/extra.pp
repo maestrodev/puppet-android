@@ -10,10 +10,12 @@
 #
 # Copyright 2012 MaestroDev, unless otherwise noted.
 #
-define android::extra() {
+define android::extra(
+  $revision = 'present',
+) {
 
-  android::package{ $title:
-    type => 'extra',
+  android::package { $title:
+    revision => $revision,
+    type     => 'extra',
   }
-
 }
