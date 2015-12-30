@@ -18,6 +18,9 @@ class android::ndk(
   $ndk_version = $android::params::ndk_version
 )
 {
+
+  validate_re($ndk_version, '\.bin$')
+
   include android::paths
   include android::params
   include wget
