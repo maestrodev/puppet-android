@@ -15,9 +15,8 @@
 # Copyright 2015 Sam Kerr, unless otherwise noted.
 #
 class android::ndk(
-  $ndk_version = $android::params::ndk_version
-)
-{
+  $ndk_version = $android::params::ndk_version,
+) {
 
   validate_re($ndk_version, '\.bin$')
 

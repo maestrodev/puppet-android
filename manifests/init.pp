@@ -25,7 +25,8 @@ class android(
   $group      = $android::params::group,
   $installdir = $android::params::installdir,
   $proxy_host = $android::params::proxy_host,
-  $proxy_port = $android::params::proxy_port) inherits android::params {
+  $proxy_port = $android::params::proxy_port,
+) inherits android::params {
 
   validate_re($version, '^\d+(?:\.\d+)*$', "Invalid version: ${version}")
   validate_string($user)

@@ -12,6 +12,7 @@
 # Copyright 2012 MaestroDev, unless otherwise noted.
 #
 class android::sdk {
+
   include android::paths
   include wget
 
@@ -44,9 +45,9 @@ class android::sdk {
     command => $unpack_command,
     creates => $android::paths::sdk_home,
     cwd     => $android::paths::installdir,
-  }->
+  } ->
   file { 'android-executable':
-    ensure => present,
+    ensure => file,
     path   => "${android::paths::toolsdir}/android",
     owner  => $android::user,
     group  => $android::group,
@@ -58,11 +59,16 @@ class android::sdk {
   if ($::kernel == 'Linux') and ($::architecture == 'x86_64' or $::architecture == 'amd64') and $::lsbdistrelease != '14.04' {
     ensure_packages($::osfamily ? {
       'RedHat' => ['glibc.i686','zlib.i686','libstdc++.i686','zlib','libstdc++'],
+
+    $packages = $::osfamily ? {
       # List 64-bit version and use latest for installation too so that the same
       # version is applied to both.
+      'RedHat' => ['glibc.i686', 'zlib.i686', 'libstdc++.i686', 'zlib', 'libstdc++'],
       'Debian' => ['ia32-libs'],
       default  => [],
-    })
+    }
+
+    ensure_packages($packages)
   }
 
   if $::lsbdistrelease == '14.04' {
