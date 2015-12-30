@@ -2,12 +2,12 @@
   "name": "maestrodev-android",
   "version": "1.3.2",
   "author": "maestrodev",
-  "summary": "Android SDK module for Puppet",
+  "summary": "Android SDK and NDK module for Puppet",
   "license": "Apache-2.0",
   "source": "http://github.com/maestrodev/puppet-android",
   "project_page": "http://github.com/maestrodev/puppet-android",
   "issues_url": "https://github.com/maestrodev/puppet-android/issues",
-  "description": "A Puppet module to install the Android SDK.",
+  "description": "A Puppet module to install the Android SDK and NDK.",
   "dependencies": [
     {
       "name": "maestrodev/wget",
@@ -65,7 +65,8 @@
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
         "6",
-        "7"
+        "7",
+        "8"
       ]
     },
     {
@@ -97,7 +98,9 @@
         "10",
         "11",
         "12",
-        "13"
+        "13",
+        "14",
+        "15"
       ]
     }
   ],

@@ -56,9 +56,9 @@ class android::sdk {
 
   # For 64-bit systems, we need to install some 32-bit libraries for the SDK
   # to work.
-  if ($::kernel == 'Linux') and ($::architecture == 'x86_64' or $::architecture == 'amd64') and $::lsbdistrelease != '14.04' {
-    ensure_packages($::osfamily ? {
-      'RedHat' => ['glibc.i686','zlib.i686','libstdc++.i686','zlib','libstdc++'],
+  if ($::kernel == 'Linux') and ($::architecture == 'x86_64' or $::architecture == 'amd64')
+    and ($::lsbdistid != 'Ubuntu' or versioncmp($::lsbdistrelease, '14.04') < 0)
+    and ($::lsbdistid != 'Debian' or versioncmp($::lsbdistrelease, '7.0') < 0) {
 
     $packages = $::osfamily ? {
       # List 64-bit version and use latest for installation too so that the same
@@ -71,7 +71,9 @@ class android::sdk {
     ensure_packages($packages)
   }
 
-  if $::lsbdistrelease == '14.04' {
+  if ($::lsbdistid == 'Ubuntu' and versioncmp($::lsbdistrelease, '14.04') >= 0)
+    or ($::lsbdistid == 'Debian' and versioncmp($::lsbdistrelease, '7.0') >= 0) {
+
     ensure_packages(['libc6-i386', 'lib32stdc++6', 'lib32gcc1', 'lib32ncurses5', 'lib32z1'])
   }
 }
