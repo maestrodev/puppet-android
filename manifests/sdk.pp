@@ -1,7 +1,7 @@
 # == Class: android::sdk
 #
 # This downloads and unpacks the Android SDK. It also
-# installs necessary 32bit libraries for 64bit Linux systems.
+# installs necessary 32-bit libraries for 64-bit Linux systems.
 #
 # === Authors
 #
@@ -53,12 +53,13 @@ class android::sdk {
     mode   => '0755',
   }
 
-  # For 64bit systems, we need to install some 32bit libraries for the SDK
+  # For 64-bit systems, we need to install some 32-bit libraries for the SDK
   # to work.
   if ($::kernel == 'Linux') and ($::architecture == 'x86_64' or $::architecture == 'amd64') and $::lsbdistrelease != '14.04' {
     ensure_packages($::osfamily ? {
-      # list 64-bit version and use latest for installation too so that the same version is applied to both
       'RedHat' => ['glibc.i686','zlib.i686','libstdc++.i686','zlib','libstdc++'],
+      # List 64-bit version and use latest for installation too so that the same
+      # version is applied to both.
       'Debian' => ['ia32-libs'],
       default  => [],
     })
