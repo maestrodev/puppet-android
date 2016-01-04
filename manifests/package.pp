@@ -1,11 +1,27 @@
 # == Define: android::package
 #
-# This defined resource is used to install Android SDK packages
+# This defined resource is used to install Android SDK packages.
+#
+# === Examples
+#
+# To install the latest revision of a package:
+#   android::package { 'extra-android-m2repository':
+#     type     => 'extra',
+#     revision => 'latest',
+#   }
+#
+# To install a specified revision of a package:
+#   android::package { 'extra-android-m2repository':
+#     type     => 'extra',
+#     revision => '24',
+#   }
 #
 # === Parameters
 #
-# [*type*] One of platform-tools, platform, addon, extra or build-tools. Indicates
-# the type of package to install.
+# [*type*] The type of package to install. This must be 'addon', 'build-tools',
+#   'extra', 'platform', 'platform-tools', or 'system-images'.
+# [*revision*] The revision number of the specified package or a value of
+#   'latest' or 'present'
 #
 # === Authors
 #

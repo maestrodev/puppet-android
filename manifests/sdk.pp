@@ -1,7 +1,7 @@
 # == Class: android::sdk
 #
-# This downloads and unpacks the Android SDK. It also
-# installs necessary 32-bit libraries for 64-bit Linux systems.
+# This downloads and unpacks the Android SDK. It also installs the necessary
+# 32-bit libraries for 64-bit Linux systems.
 #
 # === Authors
 #

@@ -1,15 +1,25 @@
 # == Class: android
 #
-# This class is used to install the android SDK and platform tools
+# This class is used to install the Android SDK and platform tools.
 #
-# === Parameters:
+# === Examples
 #
-# [*version*] the SDK version
-# [*user*] used to set the file ownership of the installed SDK
-# [*group*] used to set the file ownership of the installed SDK
-# [*installdir*] the install directory.
-# [*proxy_host*] the proxy server host name (used by the android tool)
-# [*proxy_port*] the proxy server port (used by the android tool)
+# To install the Android SDK:
+#   class { 'java': } ->
+#   class { 'android':
+#     user       => 'someuser',
+#     group      => 'somegroup',
+#     installdir => '/path/to/your/dir',
+#   }
+#
+# === Parameters
+#
+# [*version*] The SDK version
+# [*user*] Used to set the file ownership of the installed SDK
+# [*group*] Used to set the file ownership of the installed SDK
+# [*installdir*] The install directory
+# [*proxy_host*] The proxy server host name (used by the 'android' tool)
+# [*proxy_port*] The proxy server port (used by the 'android' tool)
 #
 # === Authors
 #

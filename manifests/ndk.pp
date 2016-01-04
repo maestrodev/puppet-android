@@ -1,10 +1,21 @@
 # == Class: android::ndk
 #
 # This downloads and unpacks the Android NDK from Google's download
-# sever, or another specified server.
+# server, or another specified server.
 #
-# Note that the NDK is expected to be a self extracting, so the
-# older .tar.gz packages that are simply extracted will not be supported.
+# Note that the NDK is expected to be a self extracting, so the older '.tar.gz'
+# packages that are simply extracted will not be supported.
+#
+# === Examples
+#
+# To install the Android NDK r10c-linux-x86_64:
+#   class { 'android::ndk':
+#     ndk_version => 'android-ndk-r10c-linux-x86_64.bin'
+#   }
+#
+# === Parameters
+#
+# [*ndk_version*] The NDK version and architecture to install
 #
 # === Authors
 #

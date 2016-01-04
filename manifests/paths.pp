@@ -1,7 +1,7 @@
-# === Class: android::paths
+# == Class: android::paths
 #
-# This class defines the paths used in the Android SDK installation
-# and operation.
+# This class defines the paths used in the Android SDK installation and
+# operation.
 #
 # === Authors
 #
