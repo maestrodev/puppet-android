@@ -1,6 +1,6 @@
-require "spec_helper_acceptance"
+require 'spec_helper_acceptance'
 
-describe "android" do
+describe 'android' do
 
   let(:manifest) {
     %Q{
@@ -14,8 +14,8 @@ describe "android" do
     }
   }
 
-  it "android SDK should install" do
-    # Run it twice and test for idempotency
+  it 'android SDK should install' do
+    # Run it twice and test for idempotency.
     apply_manifest(manifest, :catch_failures => true)
     apply_manifest(manifest, :catch_changes => true)
   end

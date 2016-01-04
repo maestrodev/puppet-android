@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "android" do
+describe 'android' do
   let(:version) { '22.3' }
   let(:dir) { '/usr/local/android' }
   let(:facts) { {
@@ -12,7 +12,7 @@ describe "android" do
     it { should contain_class('android::sdk') }
     it { should contain_class('android::platform_tools') }
 
-    it { should contain_Wget__Fetch("download-androidsdk").with({ 
+    it { should contain_Wget__Fetch('download-androidsdk').with({
       :source => "http://dl.google.com/android/android-sdk_r#{version}-linux.tgz",
       :destination => "#{dir}/android-sdk_r#{version}-linux.tgz"})
     }
@@ -31,7 +31,7 @@ describe "android" do
     let(:params) { {
       :version => version
     } }
-    it { should contain_Wget__Fetch("download-androidsdk").with({
+    it { should contain_Wget__Fetch('download-androidsdk').with({
       :source => "http://dl.google.com/android/android-sdk_r#{version}-linux.tgz",
       :destination => "#{dir}/android-sdk_r#{version}-linux.tgz"})
     }
@@ -92,7 +92,7 @@ describe "android" do
       :proxy_port => '1234'
     } }
 
-    it { should contain_Wget__Fetch("download-androidsdk").with({
+    it { should contain_Wget__Fetch('download-androidsdk').with({
       :source => "http://dl.google.com/android/android-sdk_r#{version}-macosx.zip",
       :destination => "#{dir}/android-sdk_r#{version}-macosx.zip"})
     }
