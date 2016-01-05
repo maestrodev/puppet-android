@@ -8,7 +8,7 @@ describe 'android::package' do
     let(:title) { 'android-15' }
     let(:params) { { :type => 'platform' } }
     it { should contain_file("#{dir}/expect-install-android-15")
-      .with_content(/android update sdk -u --all -t android-15/) }
+      .with_content(/android update sdk -u -a -t android-15/) }
     it { should contain_exec('update-android-package-android-15').with({
       :command => "#{dir}/expect-install-android-15",
       :creates => "#{dir}/android-sdk-linux/platforms/android-15",
@@ -32,7 +32,7 @@ describe 'android::package' do
     } }
     let(:title) { 'android-15' }
     let(:params) { { :type => 'platform' } }
-    it { should contain_file("#{dir}/expect-install-android-15").with_content(/android update sdk -u --all -t android-15/) }
+    it { should contain_file("#{dir}/expect-install-android-15").with_content(/android update sdk -u -a -t android-15/) }
     it { should contain_exec('update-android-package-android-15').with({
       :command => "#{dir}/expect-install-android-15",
       :creates => "#{dir}/android-sdk-macosx/platforms/android-15",

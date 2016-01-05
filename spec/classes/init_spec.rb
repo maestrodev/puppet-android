@@ -18,7 +18,7 @@ describe 'android' do
     }
 
     it { should contain_file("#{dir}/expect-install-platform-tools")
-      .with_content(/android update sdk -u --all -t platform-tools/) }
+      .with_content(/android update sdk -u -a -t platform-tools/) }
     it { should contain_exec('update-android-package-platform-tools')
       .with_command("#{dir}/expect-install-platform-tools") }
 
@@ -45,7 +45,7 @@ describe 'android' do
     } }
 
     it { should contain_file("#{dir}/expect-install-platform-tools")
-      .with_content(/android update sdk -u --all -t platform-tools --proxy-host myhost --proxy-port 1234/) }
+      .with_content(/android update sdk -u -a -t platform-tools --proxy-host myhost --proxy-port 1234/) }
     it { should contain_exec('update-android-package-platform-tools')
       .with_command("#{dir}/expect-install-platform-tools") }
   end
@@ -98,7 +98,7 @@ describe 'android' do
     }
 
     it { should contain_file("#{dir}/expect-install-platform-tools")
-      .with_content(/android update sdk -u --all -t platform-tools --proxy-host myhost --proxy-port 1234/) }
+      .with_content(/android update sdk -u -a -t platform-tools --proxy-host myhost --proxy-port 1234/) }
     it { should contain_exec('update-android-package-platform-tools')
       .with_command("#{dir}/expect-install-platform-tools") }
 
