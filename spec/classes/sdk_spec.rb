@@ -29,7 +29,8 @@ describe "android::sdk" do
       :operatingsystem => 'Ubuntu',
       :osfamily => 'Debian'
     } }
-    it { should contain_package('ia32-libs') }
+    it { should contain_package('lib32stdc++6') }
+    it { should contain_package('lib32z1') }    
   end
 
   context '64bit Debian, amd64 architecture', :compile do
@@ -38,7 +39,8 @@ describe "android::sdk" do
         :osfamily => 'Debian',
         :architecture => 'amd64'
     } }
-    it { should contain_package('ia32-libs') }
+    it { should contain_package('lib32stdc++6') }
+    it { should contain_package('lib32z1') }    
   end
 
 end

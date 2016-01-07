@@ -59,7 +59,7 @@ class android::sdk {
     ensure_packages($::osfamily ? {
       # list 64-bit version and use latest for installation too so that the same version is applied to both
       'RedHat' => ['glibc.i686','zlib.i686','libstdc++.i686','zlib','libstdc++'],
-      'Debian' => ['ia32-libs'],
+      'Debian' => ['lib32stdc++6','lib32z1'],
       default  => [],
     })
   }

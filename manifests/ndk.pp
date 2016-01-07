@@ -18,7 +18,7 @@ class android::ndk(
   $ndk_version = $android::params::ndk_version
 )
 {
-  include android::params
+  include android
   include wget
 
   $base_path = "http://dl.google.com/android/ndk/${ndk_version}"
@@ -36,7 +36,7 @@ class android::ndk(
   } ->
   exec { 'run-androidndk':
     command => "${ndk_installer} -y",
-    cwd     => $android::params::installdir,
+    cwd     => $android::paths::installdir,
   }
 
 }
