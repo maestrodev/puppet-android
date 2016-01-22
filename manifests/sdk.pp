@@ -57,7 +57,7 @@ class android::sdk {
   # to work.
   if ($::kernel == 'Linux') and ($::architecture == 'x86_64' or $::architecture == 'amd64') {
     if $::lsbdistcodename == 'jessie' or $::lsbdistrelease == 14.04 {
-      ensure_packages(["libc6-i386", "lib32stdc++6", "lib32gcc1", "lib32ncurses5", "lib32z1"])
+      ensure_packages(['libc6-i386', 'lib32stdc++6', 'lib32gcc1', 'lib32ncurses5', 'lib32z1'])
     } else {
       ensure_packages($::osfamily ? {
         # list 64-bit version and use latest for installation too so that the same version is applied to both
