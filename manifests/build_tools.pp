@@ -1,6 +1,11 @@
-# == Class: android::build_tools
+# == Define: android::build_tools
 #
-# Installs the Android SDK build-tools.
+# Installs an Android SDK build-tools package.
+#
+# === Examples
+#
+# To install a build-tools package:
+#   android::build_tools { 'build-tools-19.0.1': }
 #
 # === Authors
 #
@@ -8,12 +13,11 @@
 #
 # === Copyright
 #
-# Copyright 2013 Philip Schiffer
+# Copyright 2013 Philip Schiffer.
 #
 define android::build_tools() {
 
-  android::package{ $title:
+  android::package { $title:
     type => 'build-tools',
   }
-
 }

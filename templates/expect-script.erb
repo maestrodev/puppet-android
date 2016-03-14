@@ -1,16 +1,34 @@
 #!/usr/bin/env ruby
 
+## Fixes 'invalid byte sequence in US-ASCII'
+Encoding.default_external = Encoding::UTF_8
+Encoding.default_internal = Encoding::UTF_8
+
 require 'pty'
 require 'expect'
 
-command="<%= scope.lookupvar('android::paths::sdk_home') %>/tools/android update sdk -u --all -t <%= @title %> <%= @proxy_host %> <%= @proxy_port %>"
-match=%r/^\s*Do you accept the license .* \[y\/n\]:\s*/
-response="y"
+command = "<%= scope.lookupvar('android::paths::sdk_home') %>/tools/android update sdk -u -a -t <%= @title %> <%= @proxy_host %> <%= @proxy_port %>"
+
+dry_mode_command = "#{command} -n"
+dry_mode_match = %r/^\s*Error: Ignoring unknown package filter '<%= @title %>'\s*/
+
+puts dry_mode_command
+
+PTY.spawn(dry_mode_command) do |r, w, pid|
+  begin
+    r.expect(dry_mode_match) do |result|
+      exit 1 unless result.nil?
+    end
+  rescue Errno::EIO, PTY::ChildExited
+  end
+end
+
+match = %r/^\s*Do you accept the license .* \[y\/n\]:\s*/
+response = 'y'
 
 puts command
 
-PTY.spawn(command) do |r,w,p|
-
+PTY.spawn(command) do |r, w, pid|
   w.sync = true
 
   begin
@@ -24,4 +42,5 @@ PTY.spawn(command) do |r,w,p|
 end
 
 exit
+
 #  vim: set ts=2 sw=2 tw=0 et:

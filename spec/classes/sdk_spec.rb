@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "android::sdk" do
+describe 'android::sdk' do
   let(:pre_condition) { 'include android' }
 
   context '64bit RedHat', :compile do
