@@ -60,7 +60,7 @@ chmod -R a+rx ${android::paths::sdk_home}"
   # to work.
 
   if ($::kernel == 'Linux') and ($::architecture == 'x86_64' or $::architecture == 'amd64') {
-    $lsbdistrelease_major = inline_template("<%= @lsbdistrelease.to_i %>")
+    $lsbdistrelease_major = inline_template('<%= @lsbdistrelease.to_i %>')
     if $::lsbdistcodename == 'jessie' or $lsbdistrelease_major >= 14 {
       ensure_packages(['libc6-i386', 'lib32stdc++6', 'lib32gcc1', 'lib32ncurses5', 'lib32z1'])
     } else {
