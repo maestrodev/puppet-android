@@ -21,10 +21,12 @@ class android::sdk {
 
   case $::kernel {
     'Linux': {
-      $unpack_command = "/bin/tar -xvf ${android::paths::archive} --no-same-owner --no-same-permissions && chmod -R a+rx ${android::paths::sdk_home}"
+      $unpack_command = "/bin/tar -xvf ${android::paths::archive} \
+      --no-same-owner --no-same-permissions && chmod -R a+rx ${android::paths::sdk_home}"
     }
     'Darwin': {
-      $unpack_command = "/usr/bin/unzip ${android::paths::archive} && chmod -R a+rx ${android::paths::sdk_home}"
+      $unpack_command = "/usr/bin/unzip ${android::paths::archive} \
+      && chmod -R a+rx ${android::paths::sdk_home}"
     }
     default: {
       fail("Unsupported Kernel: ${::kernel} operatingsystem: ${::operatingsystem}")
