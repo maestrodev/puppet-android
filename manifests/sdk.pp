@@ -59,16 +59,13 @@ class android::sdk {
   if ($::kernel == 'Linux') and ($::architecture == 'x86_64' or $::architecture == 'amd64')
     and ($::lsbdistid != 'Ubuntu' or versioncmp($::lsbdistrelease, '14.04') < 0)
     and ($::lsbdistid != 'Debian' or versioncmp($::lsbdistrelease, '7.0') < 0) {
-
-    $packages = $::osfamily ? {
+    ensure_packages($::osfamily ? {
       # List 64-bit version and use latest for installation too so that the same
       # version is applied to both.
       'RedHat' => ['glibc.i686', 'zlib.i686', 'libstdc++.i686', 'zlib', 'libstdc++'],
       'Debian' => ['ia32-libs'],
       default  => [],
-    }
-
-    ensure_packages($packages)
+    })
   }
 
   if ($::lsbdistid == 'Ubuntu' and versioncmp($::lsbdistrelease, '14.04') >= 0)
