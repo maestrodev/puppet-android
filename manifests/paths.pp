@@ -19,17 +19,17 @@ class android::paths {
   case $::kernel {
     'Linux': {
       $sdk_home     = "${installdir}/android-sdk-linux"
-      $distrib_file = "android-sdk_r${version}-linux.tgz"
+      $distrib_file = "sdk-tools-linux-${version}.zip"
     }
     'Darwin': {
-      $sdk_home     = "${installdir}/android-sdk-macosx"
-      $distrib_file = "android-sdk_r${version}-macosx.zip"
+      $sdk_home     = "${installdir}/android-sdk-darwin"
+      $distrib_file = "sdk-tools-darwin-${version}.zip"
     }
     default: {
       fail("Unsupported Kernel: ${::kernel} operatingsystem: ${::operatingsystem}")
     }
   }
-  $source   = "http://dl.google.com/android/${distrib_file}"
+  $source   = "https://dl.google.com/android/repository/${distrib_file}"
   $archive  = "${installdir}/${distrib_file}"
 
   $toolsdir = "${sdk_home}/tools"
