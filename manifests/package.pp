@@ -24,33 +24,33 @@ define android::package($type) {
 
   $proxy_host = $android::proxy_host ? { undef => '', default => "--proxy-host ${android::proxy_host}" }
   $proxy_port = $android::proxy_port ? { undef => '', default => "--proxy-port ${android::proxy_port}" }
+  $cleaned_title = regsubst($title, ';', '-', 'G')
 
   case $type {
     'platform-tools': {
-      $creates = "${android::paths::sdk_home}/platform-tools"
+      $create_path_suffix = 'platform-tools'
       $package_name = $title
     }
     'platform': {
-      $creates = "${android::paths::sdk_home}/platforms/${title}"
-      $package_name = $title
+      $create_path_suffix = "platforms/${title}"
+      $package_name = "platforms;${title}"
     }
     'system-images': {
-      $title_parts = split($title, '-')
-      $creates = "${android::paths::sdk_home}/system-images/android-${title_parts[-1]}/default/${title_parts[2]}-${title_parts[3]}"
+      $title_parts = split($title, ';')
+      $create_path_suffix = "${type}/${title_parts[0]}/${title_parts[1]}/${title_parts[2]}"
       $package_name = "${type};${title}"
     }
     'addon': {
-      $creates = "${android::paths::sdk_home}/add-ons/${title}"
+      $create_path_suffix = "add-ons/${title}"
       $package_name = "add-ons;${title}"
     }
     'extra': {
-      $title_parts = split($title, '-')
-      $creates = "${android::paths::sdk_home}/extras/${title_parts[1]}/${title_parts[2]}"
+      $title_parts = split($title, ';')
+      $create_path_suffix = join(['extras', join($title_parts, '/')], '/')
       $package_name = "extras;${title}"
     }
     'build-tools': {
-      $title_parts = split($title, '-')
-      $creates = "${android::paths::sdk_home}/build-tools/${title_parts[2]}"
+      $create_path_suffix = "build-tools/${title}"
       $package_name = "${type};${title}"
     }
     default: {
@@ -58,13 +58,13 @@ define android::package($type) {
     }
   }
 
-  file { "${android::installdir}/expect-install-${title}":
+  file { "${android::installdir}/expect-install-${cleaned_title}":
     content => template('android/expect-script.erb'),
     mode    => '0755',
   } ->
-  exec { "update-android-package-${title}":
-    command => "${android::installdir}/expect-install-${title}",
-    creates => $creates,
+  exec { "update-android-package-${cleaned_title}":
+    command => "${android::installdir}/expect-install-${cleaned_title}",
+    creates => "${android::paths::sdk_home}/${create_path_suffix}",
     timeout => 0,
     require => [Class['android::sdk']],
   }
