@@ -3,8 +3,8 @@
 require 'pty'
 require 'expect'
 
-command="<%= scope.lookupvar('android::paths::sdk_home') %>/tools/android update sdk -u --all -t <%= @package_name %> <%= @proxy_host %> <%= @proxy_port %>"
-match=%r/^\s*Do you accept the license .* \[y\/n\]:\s*/
+command="<%= scope.lookupvar('android::paths::sdk_home') %>/tools/bin/sdkmanager --update -u --include_obsolete -t <%= @package_name %> <%= @proxy_host %> <%= @proxy_port %>"
+match=%r/^\s*Accept? .* \(y\/N\):\s*/
 response="y"
 
 puts command
