@@ -28,24 +28,30 @@ define android::package($type) {
   case $type {
     'platform-tools': {
       $creates = "${android::paths::sdk_home}/platform-tools"
+      $package_name = $title
     }
     'platform': {
       $creates = "${android::paths::sdk_home}/platforms/${title}"
+      $package_name = $title
     }
     'system-images': {
       $title_parts = split($title, '-')
       $creates = "${android::paths::sdk_home}/system-images/android-${title_parts[-1]}/default/${title_parts[2]}-${title_parts[3]}"
+      $package_name = "${type};${title}"
     }
     'addon': {
       $creates = "${android::paths::sdk_home}/add-ons/${title}"
+      $package_name = "add-ons;${title}"
     }
     'extra': {
       $title_parts = split($title, '-')
       $creates = "${android::paths::sdk_home}/extras/${title_parts[1]}/${title_parts[2]}"
+      $package_name = "extras;${title}"
     }
     'build-tools': {
       $title_parts = split($title, '-')
       $creates = "${android::paths::sdk_home}/build-tools/${title_parts[2]}"
+      $package_name = "${type};${title}"
     }
     default: {
       fail("Unsupported package type: ${type}")

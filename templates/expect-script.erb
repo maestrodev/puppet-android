@@ -3,7 +3,7 @@
 require 'pty'
 require 'expect'
 
-command="<%= scope.lookupvar('android::paths::sdk_home') %>/tools/android update sdk -u --all -t <%= @title %> <%= @proxy_host %> <%= @proxy_port %>"
+command="<%= scope.lookupvar('android::paths::sdk_home') %>/tools/android update sdk -u --all -t <%= @package_name %> <%= @proxy_host %> <%= @proxy_port %>"
 match=%r/^\s*Do you accept the license .* \[y\/n\]:\s*/
 response="y"
 
