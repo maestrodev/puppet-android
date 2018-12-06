@@ -21,8 +21,9 @@ class android::ndk(
   include android::params
   include wget
 
-  $base_path = "http://dl.google.com/android/ndk/${ndk_version}"
-  $ndk_installer = "${android::paths::installdir}/${ndk_version}"
+  $ndk_package = "android-ndk-${ndk_version}-linux-x86_64"
+  $base_path = "https://dl.google.com/android/repository/${ndk_package}.zip"
+  $ndk_installer = "${android::paths::installdir}/${ndk_package}"
   wget::fetch { 'download-androidndk':
     source      => $base_path,
     destination => $ndk_installer,
