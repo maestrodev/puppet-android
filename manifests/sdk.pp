@@ -19,19 +19,14 @@ class android::sdk {
     Exec { user => $android::user }
   }
 
-  case $::kernel {
-    'Linux': {
-      $unpack_command = "/bin/tar -xvf ${android::paths::archive} --no-same-owner --no-same-permissions && chmod -R a+rx ${android::paths::sdk_home}"
-    }
-    'Darwin': {
-      $unpack_command = "/usr/bin/unzip ${android::paths::archive} && chmod -R a+rx ${android::paths::sdk_home}"
-    }
-    default: {
-      fail("Unsupported Kernel: ${::kernel} operatingsystem: ${::operatingsystem}")
-    }
-  }
+  $unpack_command = "/usr/bin/unzip -q -o ${android::paths::archive} && chmod -R a+rx ${android::paths::sdk_home}"
 
   file { $android::paths::installdir:
+    ensure => directory,
+    owner  => $android::user,
+    group  => $android::group,
+  } ->
+  file { $android::paths::sdk_home:
     ensure => directory,
     owner  => $android::user,
     group  => $android::group,
@@ -42,8 +37,8 @@ class android::sdk {
   } ->
   exec { 'unpack-androidsdk':
     command => $unpack_command,
-    creates => $android::paths::sdk_home,
-    cwd     => $android::paths::installdir,
+    creates => $android::paths::toolsdir,
+    cwd     => $android::paths::sdk_home,
   }->
   file { 'android-executable':
     ensure => present,
@@ -56,7 +51,7 @@ class android::sdk {
   # For 64bit systems, we need to install some 32bit libraries for the SDK
   # to work.
   if ($::kernel == 'Linux') and ($::architecture == 'x86_64' or $::architecture == 'amd64') {
-    if $::lsbdistcodename == 'jessie' or $::lsbdistrelease == 14.04 {
+    if $::lsbdistcodename == 'jessie' or $::lsbdistcodename == 'stretch' or $::lsbdistrelease == 14.04 {
       ensure_packages(['libc6-i386', 'lib32stdc++6', 'lib32gcc1', 'lib32ncurses5', 'lib32z1'])
     } else {
       ensure_packages($::osfamily ? {

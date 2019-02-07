@@ -12,12 +12,12 @@
 #
 class android::params {
 
-  $version    = '22.3'
+  $version    = '4333796'
   $proxy_host = undef
   $proxy_port = undef
   $installdir = '/usr/local/android'
 
-  $ndk_version = 'android-ndk-r10d-linux-x86_64.bin'
+  $ndk_version = 'r18b'
 
   case $::kernel {
     'Linux': {

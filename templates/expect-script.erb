@@ -1,27 +1,5 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env bash
 
-require 'pty'
-require 'expect'
+yes | <%= scope.lookupvar('android::paths::sdk_home') %>/tools/bin/sdkmanager --install --include_obsolete '<%= @package_name %>' <%= @proxy_host %> <%= @proxy_port %>
 
-command="<%= scope.lookupvar('android::paths::sdk_home') %>/tools/android update sdk -u --all -t <%= @title %> <%= @proxy_host %> <%= @proxy_port %>"
-match=%r/^\s*Do you accept the license .* \[y\/n\]:\s*/
-response="y"
-
-puts command
-
-PTY.spawn(command) do |r,w,p|
-
-  w.sync = true
-
-  begin
-    while true do
-      r.expect(match)
-      sleep(0.1)
-      w.puts(response)
-    end
-  rescue Errno::EIO, PTY::ChildExited
-  end
-end
-
-exit
-#  vim: set ts=2 sw=2 tw=0 et:
+exit 0

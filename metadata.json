@@ -10,8 +10,8 @@
   "description": "A Puppet module to install the Android SDK.",
   "dependencies": [
     {
-      "name": "maestrodev/wget",
-      "version_requirement": ">=1.0.0"
+      "name": "puppet/wget",
+      "version_requirement": ">=2.0.0"
     },
     {
       "name": "puppetlabs/stdlib",

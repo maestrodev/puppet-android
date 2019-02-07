@@ -41,4 +41,42 @@ describe "android::sdk" do
     it { should contain_package('ia32-libs') }
   end
 
+  context '64bit Debian Jessie, x86_64 architecture', :compile do
+    let(:facts) { {
+      :operatingsystem => 'Debian',
+      :osfamily => 'Debian'
+      :lsbdistcodename => 'jessie'
+    } }
+    it { should_not contain_package('ia32-libs') }
+  end
+
+  context '64bit Debian Jessie, amd64 architecture', :compile do
+    let(:facts) { {
+        :operatingsystem => 'Debian',
+        :osfamily => 'Debian',
+        :lsbdistcodename => 'jessie'
+        :architecture => 'amd64'
+    } }
+    it { should_not contain_package('ia32-libs') }
+  end
+
+  context '64bit Ubuntu 14.04, x86_64 architecture', :compile do
+    let(:facts) { {
+      :operatingsystem => 'Ubuntu',
+      :osfamily => 'Debian'
+      :lsbdistrelease => '14.04'
+    } }
+    it { should_not contain_package('ia32-libs') }
+  end
+
+  context '64bit Ubuntu 14.04, amd64 architecture', :compile do
+    let(:facts) { {
+        :operatingsystem => 'Ubuntu',
+        :osfamily => 'Debian',
+        :lsbdistrelease => '14.04'
+        :architecture => 'amd64'
+    } }
+    it { should_not contain_package('ia32-libs') }
+  end
+
 end
